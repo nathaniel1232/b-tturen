@@ -85,6 +85,13 @@ body {
 
 /* ---------- OPPSUMMERING ---------- */
 .summary-card { background: var(--paper-2); border-radius: 12px; padding: 12px; margin-bottom: 12px; }
+.trip-select-row { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+.trip-select-icon { font-size: 18px; }
+#trip-select {
+  flex: 1; padding: 9px 10px; border: 2px solid var(--sea); border-radius: 10px;
+  font-size: 14px; font-weight: 700; color: var(--sea); background: #fff; cursor: pointer;
+}
+.trip-blurb { font-size: 12px; color: #51606e; line-height: 1.4; margin-bottom: 12px; }
 .summary-row { display: flex; justify-content: space-around; text-align: center; }
 .stat { display: flex; flex-direction: column; }
 .stat-num { font-size: 22px; font-weight: 800; color: var(--sea); }
@@ -141,6 +148,7 @@ body {
 .badge.protected { background: #e3f9f1; color: var(--accent-d); }
 .badge.mixed { background: #fef3e0; color: var(--warn); }
 .badge.exposed { background: #fdeceb; color: var(--danger); }
+.badge.turn { background: #eef0ff; color: #4a5bd0; }
 
 .leg-strip { font-size: 11px; color: var(--muted); padding: 2px 0 8px 46px; display: flex; align-items: center; gap: 6px; }
 .leg-strip .leg-icon { font-size: 12px; }

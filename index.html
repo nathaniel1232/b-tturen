@@ -48,10 +48,15 @@
       <div class="panel-scroll">
         <!-- Oppsummering -->
         <section class="summary-card">
+          <div class="trip-select-row">
+            <span class="trip-select-icon">🧭</span>
+            <select id="trip-select" title="Velg tur"></select>
+          </div>
+          <p class="trip-blurb" id="trip-blurb"></p>
           <div class="summary-row">
-            <div class="stat"><span class="stat-num" id="stat-distance">–</span><span class="stat-label">nm én vei</span></div>
+            <div class="stat"><span class="stat-num" id="stat-distance">–</span><span class="stat-label" id="stat-distance-label">nm</span></div>
             <div class="stat"><span class="stat-num" id="stat-hours">–</span><span class="stat-label">timer motor</span></div>
-            <div class="stat"><span class="stat-num" id="stat-days">–</span><span class="stat-label">dager til 🇸🇪</span></div>
+            <div class="stat"><span class="stat-num" id="stat-days">–</span><span class="stat-label" id="stat-days-label">dager</span></div>
           </div>
           <div class="start-row">
             <label for="start-date">Avreise:</label>
