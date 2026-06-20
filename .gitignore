@@ -1,0 +1,6 @@
+# Lokale dev-/verktøyfiler
+.claude/
+*.log
+.DS_Store
+node_modules/
+.vercel/

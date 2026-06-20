@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sverige-turen · Sørlandet → Strömstad</title>
+  <meta name="description" content="Visuell seilingsplan for båttur Kristiansand–Strömstad innenskjærs i 6 knop." />
+
+  <!-- Leaflet (kart) via CDN -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+  <link rel="preconnect" href="https://api.open-meteo.com" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="app">
+    <!-- KART -->
+    <div id="map"></div>
+
+    <!-- TOPP-LINJE -->
+    <header id="topbar">
+      <div class="brand">
+        <span class="brand-logo">⚓</span>
+        <div class="brand-text">
+          <h1>Sverige-turen</h1>
+          <p>Sørlandet innenskjærs → Strömstad · <span id="boat-name"></span></p>
+        </div>
+      </div>
+      <div class="topbar-right">
+        <div class="date-badge" id="date-badge" title="Dagens dato">
+          <span class="date-label">I dag</span>
+          <span class="date-value" id="today-date">–</span>
+        </div>
+        <div class="weather-badge" id="weather-badge" title="Live vær for valgt sted">
+          <span class="wx-icon" id="wx-icon">⛅</span>
+          <div class="wx-text">
+            <span class="wx-place" id="wx-place">Kristiansand</span>
+            <span class="wx-detail" id="wx-detail">Henter vær…</span>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- SIDEPANEL -->
+    <aside id="sidepanel" class="open">
+      <button id="panel-toggle" title="Vis/skjul panel">‹</button>
+
+      <div class="panel-scroll">
+        <!-- Oppsummering -->
+        <section class="summary-card">
+          <div class="summary-row">
+            <div class="stat"><span class="stat-num" id="stat-distance">–</span><span class="stat-label">nm én vei</span></div>
+            <div class="stat"><span class="stat-num" id="stat-hours">–</span><span class="stat-label">timer motor</span></div>
+            <div class="stat"><span class="stat-num" id="stat-days">–</span><span class="stat-label">dager til 🇸🇪</span></div>
+          </div>
+          <div class="start-row">
+            <label for="start-date">Avreise:</label>
+            <input type="date" id="start-date" />
+          </div>
+          <div id="blackout-warning" class="warn hidden"></div>
+        </section>
+
+        <!-- Faner -->
+        <nav class="tabs">
+          <button class="tab active" data-tab="rute">🗺️ Rute</button>
+          <button class="tab" data-tab="kost">💰 Kostnad</button>
+          <button class="tab" data-tab="hjem">↩︎ Hjemtur</button>
+          <button class="tab" data-tab="info">🎒 Klar?</button>
+        </nav>
+
+        <!-- Innhold: RUTE -->
+        <div class="tab-content" id="tab-rute"></div>
+
+        <!-- Innhold: KOSTNAD -->
+        <div class="tab-content hidden" id="tab-kost"></div>
+
+        <!-- Innhold: HJEMTUR -->
+        <div class="tab-content hidden" id="tab-hjem"></div>
+
+        <!-- Innhold: INFO -->
+        <div class="tab-content hidden" id="tab-info"></div>
+      </div>
+    </aside>
+
+    <!-- DETALJKORT (popup for ett stopp) -->
+    <div id="detail-overlay" class="hidden">
+      <div id="detail-card">
+        <button id="detail-close" title="Lukk">✕</button>
+        <div id="detail-body"></div>
+      </div>
+    </div>
+
+    <!-- KONTROLLBAR: følg båten -->
+    <div id="playbar">
+      <button id="play-btn" title="Følg båten">▶</button>
+      <div class="play-info">
+        <div class="play-leg" id="play-leg">Trykk play for å følge båten ⛵</div>
+        <input type="range" id="play-slider" min="0" max="1000" value="0" />
+      </div>
+      <div class="play-meta">
+        <span id="play-clock"><span id="play-date">—</span> <b id="play-time">--:--</b></span>
+        <span id="play-speed-wrap">Fart:
+          <select id="play-speed">
+            <option value="1">1×</option>
+            <option value="2" selected>2×</option>
+            <option value="4">4×</option>
+            <option value="8">8×</option>
+          </select>
+        </span>
+      </div>
+    </div>
+
+    <!-- Legende -->
+    <div id="legend">
+      <span><i class="leg-line protected"></i> Skjermet</span>
+      <span><i class="leg-line mixed"></i> Delvis åpent</span>
+      <span><i class="leg-line exposed"></i> Værutsatt ⚠️</span>
+    </div>
+  </div>
+
+  <!-- Leaflet JS -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+          integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
